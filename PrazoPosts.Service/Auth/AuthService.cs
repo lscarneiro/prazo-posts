@@ -5,10 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using PrazoPosts.Repository;
 using PrazoPosts.Repository.Interfaces;
+using PrazoPosts.Service.Core;
 using PrazoPosts.Service.Exceptions;
-using PrazoPosts.Service.Interfaces;
 
-namespace PrazoPosts.Service
+namespace PrazoPosts.Service.Auth
 {
     public class AuthService : IAuthService
     {

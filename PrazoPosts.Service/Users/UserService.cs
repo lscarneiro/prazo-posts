@@ -5,8 +5,8 @@ using FluentValidation.Results;
 using PrazoPosts.Dto;
 using PrazoPosts.Model;
 using PrazoPosts.Repository.Interfaces;
+using PrazoPosts.Service.Core;
 using PrazoPosts.Service.Exceptions;
-using PrazoPosts.Service.Interfaces;
 using PrazoPosts.Service.Users.Validation;
 using ValidationException = PrazoPosts.Service.Exceptions.ValidationException;
 

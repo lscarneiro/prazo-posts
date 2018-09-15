@@ -12,6 +12,8 @@ namespace PrazoPosts.Api.Controllers
     [ApiController]
     public class PostsController : ControllerBase
     {
+        IBlogPostService
+
         // GET posts
         [HttpGet]
         public ActionResult<IEnumerable<BlogPostDTO>> Get()
@@ -31,13 +33,13 @@ namespace PrazoPosts.Api.Controllers
 
         // POST posts
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] BlogPostDTO value)
         {
         }
 
         // PUT posts/{id}
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] BlogPostDTO value)
         {
         }
 

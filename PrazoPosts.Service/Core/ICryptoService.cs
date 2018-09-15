@@ -1,4 +1,4 @@
-﻿namespace PrazoPosts.Service.Interfaces
+﻿namespace PrazoPosts.Service.Core
 {
     public interface ICryptoService
     {

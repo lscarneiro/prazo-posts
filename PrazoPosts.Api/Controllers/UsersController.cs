@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PrazoPosts.Dto;
 using PrazoPosts.Service.Exceptions;
-using PrazoPosts.Service.Interfaces;
 using PrazoPosts.Service.Users;
 
 namespace PrazoPosts.Api.Controllers

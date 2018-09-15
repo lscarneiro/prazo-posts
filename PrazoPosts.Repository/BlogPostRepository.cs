@@ -2,14 +2,15 @@
 using MongoDB.Driver;
 using PrazoPosts.Model;
 using PrazoPosts.Repository.Core;
+using PrazoPosts.Repository.Interfaces;
 
 namespace PrazoPosts.Repository
 {
-    public class PostRepository : BaseRepository<BlogPost>
+    public class BlogPostRepository : BaseRepository<BlogPost>, IBlogPostRepository
     {
         public override string CollectionName => "BlogPosts";
 
-        public PostRepository(IMongoDatabase mongoDb) : base(mongoDb)
+        public BlogPostRepository(IMongoDatabase mongoDb) : base(mongoDb)
         {
         }
     }

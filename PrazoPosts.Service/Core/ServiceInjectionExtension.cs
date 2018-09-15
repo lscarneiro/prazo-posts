@@ -3,7 +3,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using PrazoPosts.Repository.Core;
-using PrazoPosts.Service.Interfaces;
+using PrazoPosts.Service.Auth;
+using PrazoPosts.Service.Authors;
 using PrazoPosts.Service.Users;
 
 namespace PrazoPosts.Service.Core
@@ -19,6 +20,7 @@ namespace PrazoPosts.Service.Core
             services.AddSingleton<ICryptoService, CryptoService>();
             services.AddSingleton<IAuthService, AuthService>();
             services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IAuthorService, AuthorService>();
         }
     }
 }

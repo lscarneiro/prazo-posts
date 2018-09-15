@@ -15,6 +15,7 @@ namespace PrazoPosts.Repository.Core
             services.AddSingleton(database);
 
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IAuthorRepository, AuthorRepository>();
         }
     }
 }

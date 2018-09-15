@@ -38,12 +38,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
-    <Folder Include="Interfaces\" />
     <Folder Include="Core\" />
     <Folder Include="Users\" />
     <Folder Include="Users\Validation\" />
     <Folder Include="Authors\" />
     <Folder Include="Authors\Validation\" />
+    <Folder Include="Auth\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Users\Validation\IRegisterUserValidator.cs" />

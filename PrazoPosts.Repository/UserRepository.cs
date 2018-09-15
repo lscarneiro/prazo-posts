@@ -9,10 +9,10 @@ namespace PrazoPosts.Repository
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
         public override string CollectionName => "Users";
+
         public UserRepository(IMongoDatabase mongoDb) : base(mongoDb)
         {
         }
-
 
         public User GetByEmail(string email)
         {

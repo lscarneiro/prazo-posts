@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 using PrazoPosts.Model;
-using PrazoPosts.Service.Interfaces;
 
 namespace PrazoPosts.Service.Core
 {
