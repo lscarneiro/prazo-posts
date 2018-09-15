@@ -5233,13 +5233,13 @@
       "projectName": "PrazoPosts.Repository",
       "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Repository/PrazoPosts.Repository.csproj",
       "packagesPath": "/Users/luizeduardo/.nuget/packages/",
-      "outputPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Repository/obj/",
+      "outputPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Repository/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/luizeduardo/.nuget/NuGet/NuGet.Config"
+        "/Users/luizeduardo/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -5261,15 +5261,15 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "MongoDB.Driver": {
+            "target": "Package",
+            "version": "2.7.0"
+          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.1.0, )",
+            "version": "2.1.0",
             "autoReferenced": true
-          },
-          "MongoDB.Driver": {
-            "target": "Package",
-            "version": "[2.7.0, )"
           }
         },
         "imports": [
