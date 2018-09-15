@@ -10,10 +10,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PrazoPosts.Service\PrazoPosts.Service.csproj" />
-    <ProjectReference Include="..\PrazoPosts.Model\PrazoPosts.Model.csproj" />
+    <ProjectReference Include="..\PrazoPosts.Dto\PrazoPosts.Dto.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
   </ItemGroup>
 </Project>

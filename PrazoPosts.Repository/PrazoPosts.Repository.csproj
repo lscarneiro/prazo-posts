@@ -14,5 +14,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrazoPosts.Model\PrazoPosts.Model.csproj" />
   </ItemGroup>
 </Project>

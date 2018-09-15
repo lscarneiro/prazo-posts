@@ -1533,6 +1533,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Threading.ThreadPool.dll": {}
         }
+      },
+      "PrazoPosts.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "MongoDB.Driver.Core": "2.7.0"
+        },
+        "compile": {
+          "bin/placeholder/PrazoPosts.Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PrazoPosts.Model.dll": {}
+        }
       }
     }
   },
@@ -5214,12 +5227,18 @@
         "system.threading.threadpool.4.3.0.nupkg.sha512",
         "system.threading.threadpool.nuspec"
       ]
+    },
+    "PrazoPosts.Model/1.0.0": {
+      "type": "project",
+      "path": "../PrazoPosts.Model/PrazoPosts.Model.csproj",
+      "msbuildProject": "../PrazoPosts.Model/PrazoPosts.Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.NETCore.App >= 2.1.0",
-      "MongoDB.Driver >= 2.7.0"
+      "MongoDB.Driver >= 2.7.0",
+      "PrazoPosts.Model >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5249,7 +5268,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Model/PrazoPosts.Model.csproj": {
+              "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Model/PrazoPosts.Model.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

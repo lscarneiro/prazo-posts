@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PrazoPosts.Dto;
 using PrazoPosts.Model;
 
 namespace PrazoPosts.Api.Controllers
@@ -13,19 +14,19 @@ namespace PrazoPosts.Api.Controllers
     {
         // GET posts
         [HttpGet]
-        public ActionResult<IEnumerable<BlogPost>> Get()
+        public ActionResult<IEnumerable<BlogPostDTO>> Get()
         {
-            return new BlogPost[] {
-                new BlogPost { Title = "Blog 1"},
-                new BlogPost { Title = "Blog 2"}
+            return new BlogPostDTO[] {
+                new BlogPostDTO { Title = "Blog 1"},
+                new BlogPostDTO { Title = "Blog 2"}
             };
         }
 
         // GET posts/{id}
         [HttpGet("{id}")]
-        public ActionResult<BlogPost> Get(int id)
+        public ActionResult<BlogPostDTO> Get(int id)
         {
-            return new BlogPost { Title = "Blog 1" };
+            return new BlogPostDTO { Title = "Blog 1" };
         }
 
         // POST posts

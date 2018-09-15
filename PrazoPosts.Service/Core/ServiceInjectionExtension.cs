@@ -1,9 +1,12 @@
 ﻿using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using PrazoPosts.Repository;
+using PrazoPosts.Repository.Core;
+using PrazoPosts.Service.Interfaces;
+using PrazoPosts.Service.Users;
 
-namespace PrazoPosts.Service
+namespace PrazoPosts.Service.Core
 {
     public static class ServiceInjectionExtension
     {
@@ -11,6 +14,11 @@ namespace PrazoPosts.Service
         {
             services.AddRepositoryServices(connectionString, databaseName);
             services.AddSingleton<IPasswordHasher<object>>(new PasswordHasher<object>());
+            services.AddAutoMapper();
+
+            services.AddSingleton<ICryptoService, CryptoService>();
+            services.AddSingleton<IAuthService, AuthService>();
+            services.AddSingleton<IUserService, UserService>();
         }
     }
 }

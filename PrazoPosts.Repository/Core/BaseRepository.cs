@@ -10,7 +10,7 @@ namespace PrazoPosts.Repository.Core
         protected IMongoDatabase _mongoDb;
         protected IMongoCollection<T> _collection;
 
-        protected abstract string CollectionName { get; }
+        public abstract string CollectionName { get; }
 
         protected BaseRepository(IMongoDatabase mongoDb)
         {
@@ -18,9 +18,9 @@ namespace PrazoPosts.Repository.Core
             _collection = _mongoDb.GetCollection<T>(CollectionName);
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IList<T> GetAll(FilterDefinition<T> filter = null)
         {
-            return _collection.Find(doc => true).ToList();
+            return filter == null ? _collection.Find(doc => true).ToList() : _collection.Find(filter).ToList();
         }
 
         public virtual void Insert(T model)
@@ -31,6 +31,12 @@ namespace PrazoPosts.Repository.Core
         public virtual void Delete(string _id)
         {
             _collection.DeleteOne(Builders<T>.Filter.Eq("_id", _id));
+        }
+
+        public T GetById(string _id)
+        {
+            var filter = Builders<T>.Filter.Eq("_id", _id);
+            return _collection.Find(filter).FirstOrDefault();
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.AspNetCore.Identity;
 using PrazoPosts.Model;
+using PrazoPosts.Service.Interfaces;
 
-namespace PrazoPosts.Service
+namespace PrazoPosts.Service.Core
 {
-    public class CryptoService
+    public class CryptoService : ICryptoService
     {
         IPasswordHasher<object> _passwordHasher;
         public CryptoService(IPasswordHasher<object> passwordHasher)

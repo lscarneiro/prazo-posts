@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Identity;
+using PrazoPosts.Service.Core;
 using Xunit;
 
 namespace PrazoPosts.Service.Tests
@@ -8,7 +9,7 @@ namespace PrazoPosts.Service.Tests
     {
 
         [Fact]
-        public void CanEncryptPassword()
+        public void ShouldEncryptPassword()
         {
             var cryptoSvc = new CryptoService(new PasswordHasher<object>());
             var input = "test";
@@ -20,7 +21,7 @@ namespace PrazoPosts.Service.Tests
         }
 
         [Fact]
-        public void CanVerifyEncryptedPassword()
+        public void ShouldValidateCorrectPassword()
         {
             var cryptoSvc = new CryptoService(new PasswordHasher<object>());
             var input = "test";
@@ -31,7 +32,7 @@ namespace PrazoPosts.Service.Tests
         }
 
         [Fact]
-        public void CannotVerifyWrongEncryptedPassword()
+        public void ShouldNotValidateWrongPassword()
         {
             var cryptoSvc = new CryptoService(new PasswordHasher<object>());
             var input = "test";
