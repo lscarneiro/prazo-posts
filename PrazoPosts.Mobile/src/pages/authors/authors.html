@@ -1,23 +1,31 @@
-<ion-toolbar>
-  <button ion-button menuToggle icon-only>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-  <ion-title>Autores</ion-title>
-  <ion-buttons end>
-    <button ion-button icon-only (click)="addAuthor()">
-      <ion-icon name="add-circle"></ion-icon>
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon>
     </button>
-  </ion-buttons>
-</ion-toolbar>
-
+    <ion-title>Autores</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addAuthor()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngIf="authors.length == 0" text-center>
-      Você ainda não possui autores =(
-    </ion-item>
-    <ion-card ion-item *ngFor="let author of authors">
-      {{author.name}}
-    </ion-card>
+    <ion-item-sliding *ngFor="let author of authors">
+      <ion-item>
+        <p>{{author.name}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+          Editar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <!--<ion-item *ngIf="authors.length == 0" text-center>-->
+    <!--Você ainda não possui autores =(-->
+    <!--</ion-item>-->
   </ion-list>
 </ion-content>

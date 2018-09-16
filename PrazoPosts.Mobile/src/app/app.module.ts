@@ -6,14 +6,13 @@ import {StatusBar} from '@ionic-native/status-bar';
 
 import {MyApp} from './app.component';
 import {MODULES_PROVIDERS} from "./modules";
-import {COMPONENTS, PAGES} from "../pages";
+import {PAGES} from "../pages";
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     MyApp,
     ...PAGES,
-    ...COMPONENTS
   ],
   imports: [
     BrowserModule,
