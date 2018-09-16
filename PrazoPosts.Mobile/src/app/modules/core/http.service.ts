@@ -51,6 +51,17 @@ export class HttpService {
     );
   }
 
+  put<T>(url, data): Observable<T> {
+    return this.httpClient.put<T>(`${ConfigService.API_URL}/${url}`, data, {
+      headers: this.defaultHeaders()
+    }).pipe(
+      timeout(this.timeoutConfig),
+      catchError(err => {
+        return this.handleError(err, url);
+      })
+    );
+  }
+
   patch<T>(url, data): Observable<T> {
     return this.httpClient.patch<T>(`${ConfigService.API_URL}/${url}`, data, {
       headers: this.defaultHeaders()

@@ -5,7 +5,7 @@
     </button>
     <ion-title>Autores</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addAuthor()">
+      <button ion-button icon-only (click)="editAuthor()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
     </ion-buttons>
@@ -20,11 +20,11 @@
         <p>{{author.postCount}} Postagens</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary">
+        <button ion-button color="primary" (click)="editAuthor(author)">
           <ion-icon name="create"></ion-icon>
           Editar
         </button>
-        <button ion-button color="danger">
+        <button ion-button color="danger" (click)="delete(author)">
           <ion-icon name="trash"></ion-icon>
           Excluir
         </button>
