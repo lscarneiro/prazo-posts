@@ -29,7 +29,7 @@ namespace PrazoPosts.Service.Authors
 
         public void CreateAuthor(string userId, AuthorDTO authorData)
         {
-            var validator = new CreateAuthorValidator();
+            var validator = new CreateUpdateAuthorValidator();
             var validationResult = validator.Validate(authorData);
 
             if (!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
@@ -37,10 +37,23 @@ namespace PrazoPosts.Service.Authors
             author.UserId = userId;
             _authorRepository.Insert(author);
         }
+        public void UpdateAuthor(string userId, string id, AuthorDTO authorData)
+        {
+            var validator = new CreateUpdateAuthorValidator();
+            var validationResult = validator.Validate(authorData);
 
+            if (!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
+            var author = _mapper.Map<AuthorDTO, Author>(authorData);
+            author.Id = ObjectId.Parse(id);
+            author.UserId = userId;
+            _authorRepository.Update(id, author);
+        }
         public void DeleteAuthor(string userId, string _id)
         {
-            throw new NotImplementedException();
+            var author = _authorRepository.GetById(_id);
+            if (author == null) throw new UnauthorizedActionException();
+            _blogPostRepository.DeleteByAuthorId(_id);
+            _authorRepository.Delete(_id);
         }
 
         public AuthorDTO GetAuthor(string userId, string _id)
@@ -65,5 +78,6 @@ namespace PrazoPosts.Service.Authors
              }).ToList();
 
         }
+
     }
 }

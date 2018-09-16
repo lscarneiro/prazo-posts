@@ -27,6 +27,11 @@ namespace PrazoPosts.Repository.Core
         {
             _collection.InsertOne(model);
         }
+        public void Update(string _id, T model)
+        {
+            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(_id));
+            _collection.ReplaceOne(filter, model);
+        }
 
         public virtual void Delete(string _id)
         {

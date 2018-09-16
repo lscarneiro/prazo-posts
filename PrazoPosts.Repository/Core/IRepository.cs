@@ -10,6 +10,8 @@ namespace PrazoPosts.Repository.Core
         IEnumerable<T> GetAll(FilterDefinition<T> filter = null);
         T GetByFilter(FilterDefinition<T> filter);
         void Insert(T model);
+        void Update(string _id, T model);
+        void Delete(string _id);
         T GetById(string _id);
     }
 }

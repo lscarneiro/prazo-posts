@@ -50,5 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Users\Validation\IRegisterUserValidator.cs" />
+    <Compile Remove="Authors\Validation\UpdateAuthorValidator.cs" />
   </ItemGroup>
 </Project>

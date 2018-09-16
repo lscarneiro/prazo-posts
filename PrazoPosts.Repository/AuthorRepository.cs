@@ -13,5 +13,6 @@ namespace PrazoPosts.Repository
         public AuthorRepository(IMongoDatabase mongoDb) : base(mongoDb)
         {
         }
+
     }
 }

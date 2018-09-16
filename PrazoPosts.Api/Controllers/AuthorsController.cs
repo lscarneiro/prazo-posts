@@ -41,6 +41,28 @@ namespace PrazoPosts.Api.Controllers
                 return BadRequest(ex.ToJson());
             }
         }
+
+        // PUT authors/{id}
+        [HttpPut("{id}")]
+        public IActionResult Put(string id, [FromBody] AuthorDTO author)
+        {
+            try
+            {
+                _authorService.UpdateAuthor(CurrentUserId, id, author);
+                return Ok();
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(ex.ToJson());
+            }
+        }
+
+        // DELETE authors/{id}
+        [HttpDelete("{id}")]
+        public void Delete(string id)
+        {
+            _authorService.DeleteAuthor(CurrentUserId, id);
+        }
     }
 
 }

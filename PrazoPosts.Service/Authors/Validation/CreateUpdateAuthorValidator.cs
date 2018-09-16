@@ -5,9 +5,9 @@ using PrazoPosts.Repository.Interfaces;
 
 namespace PrazoPosts.Service.Authors.Validation
 {
-    public class CreateAuthorValidator : AbstractValidator<AuthorDTO>
+    public class CreateUpdateAuthorValidator : AbstractValidator<AuthorDTO>
     {
-        public CreateAuthorValidator()
+        public CreateUpdateAuthorValidator()
         {
             RuleFor(x => x.Name).NotEmpty().WithMessage("Nome é obrigatório");
         }

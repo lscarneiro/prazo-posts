@@ -19,5 +19,11 @@ namespace PrazoPosts.Repository
             var filter = Builders<BlogPost>.Filter.Eq("AuthorId", authorId);
             return _collection.CountDocuments(filter);
         }
+
+        public void DeleteByAuthorId(string authorId)
+        {
+            var filter = Builders<BlogPost>.Filter.Eq("AuthorId", authorId);
+            _collection.DeleteMany(filter);
+        }
     }
 }

@@ -67,6 +67,22 @@ namespace PrazoPosts.Service.Tests
             sut.CreateAuthor("12345", authorData);
         }
 
+
+        [Fact]
+        public void ShouldUpdateAuthor()
+        {
+            Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
+            Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
+            var authorData = new AuthorDTO
+            {
+                Name = "Test1",
+            };
+
+            var mapper = TestHelper.GetMapper();
+            var sut = new AuthorService(authorRepositoryMock.Object, blogPostRepositoryMock.Object, mapper);
+            sut.UpdateAuthor("12345", "5b9d8e952e6adf8005dbcf17", authorData);
+        }
+
         [Fact]
         public void ShouldAcceptValidAuthorDataForCreate()
         {
@@ -76,7 +92,7 @@ namespace PrazoPosts.Service.Tests
                 Name = "Test1",
             };
 
-            var sut = new CreateAuthorValidator();
+            var sut = new CreateUpdateAuthorValidator();
             var result = sut.Validate(authorData);
             Assert.True(result.IsValid);
         }
@@ -89,7 +105,7 @@ namespace PrazoPosts.Service.Tests
                 Name = "",
             };
 
-            var sut = new CreateAuthorValidator();
+            var sut = new CreateUpdateAuthorValidator();
             var result = sut.Validate(authorData);
             Assert.False(result.IsValid);
             Assert.NotEmpty(result.Errors);
@@ -100,10 +116,12 @@ namespace PrazoPosts.Service.Tests
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
             Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
-
+            authorRepositoryMock.Setup(x => x.GetById(It.IsAny<string>())).Returns(new Author());
+            //blogPostRepositoryMock.Setup(x => x.DeleteByAuthorId(It.IsAny<string>())).Returns(new Author());
             var mapper = TestHelper.GetMapper();
             var sut = new AuthorService(authorRepositoryMock.Object, blogPostRepositoryMock.Object, mapper);
             sut.DeleteAuthor("12345", "5b9d8e952e6adf8005dbcf17");
         }
+
     }
 }
