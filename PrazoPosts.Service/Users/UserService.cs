@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using PrazoPosts.Dto;
@@ -16,12 +17,15 @@ namespace PrazoPosts.Service.Users
     {
         IUserRepository _userRepository;
         ICryptoService _cryptoService;
+        IMapper _mapper;
 
         public UserService(IUserRepository userRepository,
-                           ICryptoService cryptoService)
+                           ICryptoService cryptoService,
+                           IMapper mapper)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _cryptoService = cryptoService ?? throw new ArgumentNullException(nameof(cryptoService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public void RegisterUser(UserDTO userData)
@@ -42,14 +46,9 @@ namespace PrazoPosts.Service.Users
         public UserDTO GetUser(string _id)
         {
             var user = _userRepository.GetById(_id);
-            return user != null
-                ? new UserDTO
-                {
-                    Id = user.Id.ToString(),
-                    Name = user.Name,
-                    Email = user.Email,
-                }
-                : null;
+            if (user == null) throw new NotFoundException("Usuário não encontrado");
+            user.Password = null;
+            return _mapper.Map<User, UserDTO>(user);
         }
 
 

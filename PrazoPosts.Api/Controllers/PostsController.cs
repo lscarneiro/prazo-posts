@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PrazoPosts.Dto;
 using PrazoPosts.Model;
+using PrazoPosts.Service.BlogPosts;
 
 namespace PrazoPosts.Api.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     [ApiController]
     public class PostsController : ControllerBase
     {
-        IBlogPostService
+        IBlogPostService _blogPostService;
+        public PostsController(IBlogPostService blogPostService)
+        {
+            _blogPostService = blogPostService ?? throw new ArgumentNullException(nameof(blogPostService));
+        }
 
         // GET posts
         [HttpGet]

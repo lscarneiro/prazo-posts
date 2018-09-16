@@ -9,8 +9,14 @@ namespace PrazoPosts.Service.Core
     {
         public MappingProfile()
         {
-            CreateMap<User, UserDTO>();
+            CreateMap<User, UserDTO>().ForMember(x => x.Password, opt => opt.Ignore());
             CreateMap<UserDTO, User>();
+
+            CreateMap<Author, AuthorDTO>();
+            CreateMap<AuthorDTO, Author>();
+
+            CreateMap<BlogPost, BlogPostDTO>();
+            CreateMap<BlogPostDTO, BlogPost>();
         }
     }
 }

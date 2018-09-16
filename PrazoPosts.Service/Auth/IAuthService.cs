@@ -1,7 +1,9 @@
-﻿namespace PrazoPosts.Service.Auth
+﻿using PrazoPosts.Dto;
+
+namespace PrazoPosts.Service.Auth
 {
     public interface IAuthService
     {
-        bool Authenticate(string email, string password);
+        TokenDTO Authenticate(AuthDTO authData);
     }
 }

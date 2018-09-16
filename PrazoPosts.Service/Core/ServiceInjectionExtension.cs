@@ -14,13 +14,13 @@ namespace PrazoPosts.Service.Core
         public static void AddServiceInjection(this IServiceCollection services, string connectionString, string databaseName)
         {
             services.AddRepositoryServices(connectionString, databaseName);
-            services.AddSingleton<IPasswordHasher<object>>(new PasswordHasher<object>());
+            services.AddTransient<IPasswordHasher<object>, PasswordHasher<object>>();
             services.AddAutoMapper();
 
-            services.AddSingleton<ICryptoService, CryptoService>();
-            services.AddSingleton<IAuthService, AuthService>();
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IAuthorService, AuthorService>();
+            services.AddTransient<ICryptoService, CryptoService>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAuthorService, AuthorService>();
         }
     }
 }

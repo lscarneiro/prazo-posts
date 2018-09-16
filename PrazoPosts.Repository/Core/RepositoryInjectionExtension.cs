@@ -14,8 +14,8 @@ namespace PrazoPosts.Repository.Core
             services.AddSingleton<IMongoClient>(mongoClient);
             services.AddSingleton(database);
 
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IAuthorRepository, AuthorRepository>();
         }
     }
 }

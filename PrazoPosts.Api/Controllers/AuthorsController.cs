@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PrazoPosts.Dto;
 using PrazoPosts.Service.Authors;
@@ -7,6 +8,7 @@ using PrazoPosts.Service.Exceptions;
 namespace PrazoPosts.Api.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     [ApiController]
     public class AuthorsController : ControllerBase
     {
@@ -20,6 +22,7 @@ namespace PrazoPosts.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            var name = User.Identity.Name;
             var authors = _authorService.GetAuthors();
             return Ok(authors);
         }
