@@ -1,0 +1,34 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Cancelar</button>
+    </ion-buttons>
+    <ion-title>Novo autor</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-bounce>
+  <form novalidate [formGroup]="formGroup">
+    <ion-list>
+      <ion-item>
+        <ion-label floating
+                   [class.with-error]="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+          Nome do autor
+        </ion-label>
+        <ion-input formControlName="name" required></ion-input>
+        <div item-content class="error-message"
+             *ngIf="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
+          <small text-start>Nome é obrigatório</small>
+        </div>
+      </ion-item>
+    </ion-list>
+  </form>
+  <div padding-left padding-right>
+    <button ion-button block padding (click)="save()">
+      Salvar
+    </button>
+  </div>
+</ion-content>

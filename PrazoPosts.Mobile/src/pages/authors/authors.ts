@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {ModalController, NavController} from 'ionic-angular';
 import {Author} from "../../app/dto/author";
 import {AuthorService} from "../../app/modules/services/author.service";
+import {AddAuthor} from "./add-author/add-author";
 
 @Component({
   selector: 'page-authors',
@@ -12,7 +13,8 @@ export class AuthorsPage {
   authors: Author[] = [];
 
   constructor(public navCtrl: NavController,
-              private authorService: AuthorService) {
+              private authorService: AuthorService,
+              public modalCtrl: ModalController) {
 
   }
 
@@ -23,6 +25,7 @@ export class AuthorsPage {
   }
 
   addAuthor() {
-    
+    let myModal = this.modalCtrl.create(AddAuthor);
+    myModal.present();
   }
 }
