@@ -35,6 +35,8 @@
     <PackageReference Include="FluentValidation" Version="8.0.100" />
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

@@ -8,18 +8,22 @@ using PrazoPosts.Model;
 using PrazoPosts.Repository.Interfaces;
 using PrazoPosts.Service.Authors.Validation;
 using PrazoPosts.Service.Exceptions;
+using System.Linq;
 
 namespace PrazoPosts.Service.Authors
 {
     public class AuthorService : IAuthorService
     {
         IAuthorRepository _authorRepository;
+        IBlogPostRepository _blogPostRepository;
         IMapper _mapper;
 
         public AuthorService(IAuthorRepository authorRepository,
-                            IMapper mapper)
+                             IBlogPostRepository blogPostRepository,
+                             IMapper mapper)
         {
             _authorRepository = authorRepository ?? throw new ArgumentNullException(nameof(authorRepository));
+            _blogPostRepository = blogPostRepository ?? throw new ArgumentNullException(nameof(blogPostRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -43,7 +47,9 @@ namespace PrazoPosts.Service.Authors
         {
             var filter = Builders<Author>.Filter.Eq("UserId", userId) & Builders<Author>.Filter.Eq("_id", ObjectId.Parse(_id));
             var author = _authorRepository.GetByFilter(filter);
-            return _mapper.Map<Author, AuthorDTO>(author);
+            var authorDto = _mapper.Map<Author, AuthorDTO>(author);
+            authorDto.PostCount = _blogPostRepository.PostCountByAuthor(author.Id.ToString());
+            return authorDto;
         }
 
         public IList<AuthorDTO> GetAuthors(string userId)
@@ -51,7 +57,13 @@ namespace PrazoPosts.Service.Authors
             if (string.IsNullOrWhiteSpace(userId)) throw new ArgumentNullException(nameof(userId));
             var filter = Builders<Author>.Filter.Eq("UserId", userId);
             var authors = _authorRepository.GetAll(filter);
-            return _mapper.Map<IList<Author>, IList<AuthorDTO>>(authors);
+            var authorsDto = _mapper.Map<IEnumerable<Author>, IEnumerable<AuthorDTO>>(authors);
+            return authorsDto.Select(a =>
+             {
+                 a.PostCount = _blogPostRepository.PostCountByAuthor(a.Id);
+                 return a;
+             }).ToList();
+
         }
     }
 }

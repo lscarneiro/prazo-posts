@@ -16,6 +16,7 @@ namespace PrazoPosts.Repository.Core
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IBlogPostRepository, BlogPostRepository>();
         }
     }
 }

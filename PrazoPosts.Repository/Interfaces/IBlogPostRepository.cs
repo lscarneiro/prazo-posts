@@ -6,5 +6,6 @@ namespace PrazoPosts.Repository.Interfaces
 {
     public interface IBlogPostRepository : IRepository<BlogPost>
     {
+        long PostCountByAuthor(string authorId);
     }
 }

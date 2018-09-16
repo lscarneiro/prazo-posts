@@ -18,9 +18,9 @@ namespace PrazoPosts.Repository.Core
             _collection = _mongoDb.GetCollection<T>(CollectionName);
         }
 
-        public virtual IList<T> GetAll(FilterDefinition<T> filter = null)
+        public virtual IEnumerable<T> GetAll(FilterDefinition<T> filter = null)
         {
-            return filter == null ? _collection.Find(doc => true).ToList() : _collection.Find(filter).ToList();
+            return filter == null ? _collection.Find(doc => true).ToEnumerable() : _collection.Find(filter).ToEnumerable();
         }
 
         public virtual void Insert(T model)

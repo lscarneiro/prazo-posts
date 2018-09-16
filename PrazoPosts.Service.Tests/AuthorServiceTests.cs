@@ -19,14 +19,16 @@ namespace PrazoPosts.Service.Tests
         public void ShouldGetAuthorById()
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
-            var id = "abc123";
+            Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
+            var id = "5b9d8e952e6adf8005dbcf17";
             var expected = "TestSubject";
+            blogPostRepositoryMock.Setup(x => x.PostCountByAuthor(It.IsAny<string>())).Returns(() => 0);
             authorRepositoryMock.Setup(x => x.GetByFilter(It.IsAny<FilterDefinition<Author>>())).Returns(new Author
             {
                 Name = expected
             });
             var mapper = TestHelper.GetMapper();
-            var sut = new AuthorService(authorRepositoryMock.Object, mapper);
+            var sut = new AuthorService(authorRepositoryMock.Object, blogPostRepositoryMock.Object, mapper);
             var result = sut.GetAuthor("12345", id);
             Assert.NotNull(result);
             Assert.Equal(expected, result.Name);
@@ -35,6 +37,8 @@ namespace PrazoPosts.Service.Tests
         public void ShouldGetAuthors()
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
+            Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
+            blogPostRepositoryMock.Setup(x => x.PostCountByAuthor(It.IsAny<string>())).Returns(() => 0);
             authorRepositoryMock.Setup(x => x.GetAll(It.IsAny<FilterDefinition<Author>>())).Returns(() => new List<Author>
             {
                 new Author { Name = "Test1"},
@@ -42,7 +46,7 @@ namespace PrazoPosts.Service.Tests
                 new Author { Name = "Test3"}
             });
             var mapper = TestHelper.GetMapper();
-            var sut = new AuthorService(authorRepositoryMock.Object, mapper);
+            var sut = new AuthorService(authorRepositoryMock.Object, blogPostRepositoryMock.Object, mapper);
             var result = sut.GetAuthors("12345");
             Assert.NotNull(result);
             Assert.Equal(3, result.Count);
@@ -52,13 +56,14 @@ namespace PrazoPosts.Service.Tests
         public void ShouldCreateAuthor()
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
+            Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
             var authorData = new AuthorDTO
             {
                 Name = "Test1",
             };
 
             var mapper = TestHelper.GetMapper();
-            var sut = new AuthorService(authorRepositoryMock.Object, mapper);
+            var sut = new AuthorService(authorRepositoryMock.Object, blogPostRepositoryMock.Object, mapper);
             sut.CreateAuthor("12345", authorData);
         }
 
@@ -94,10 +99,11 @@ namespace PrazoPosts.Service.Tests
         public void ShouldDeleteAuthor()
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
+            Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
 
             var mapper = TestHelper.GetMapper();
-            var sut = new AuthorService(authorRepositoryMock.Object, mapper);
-            sut.DeleteAuthor("12345", "abc123");
+            var sut = new AuthorService(authorRepositoryMock.Object, blogPostRepositoryMock.Object, mapper);
+            sut.DeleteAuthor("12345", "5b9d8e952e6adf8005dbcf17");
         }
     }
 }

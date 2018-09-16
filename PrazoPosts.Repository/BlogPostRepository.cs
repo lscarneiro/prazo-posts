@@ -13,5 +13,11 @@ namespace PrazoPosts.Repository
         public BlogPostRepository(IMongoDatabase mongoDb) : base(mongoDb)
         {
         }
+
+        public long PostCountByAuthor(string authorId)
+        {
+            var filter = Builders<BlogPost>.Filter.Eq("AuthorId", authorId);
+            return _collection.CountDocuments(filter);
+        }
     }
 }

@@ -5,5 +5,6 @@ namespace PrazoPosts.Dto
     {
         public string Id { get; set; }
         public string Name { get; set; }
+        public long PostCount { get; set; }
     }
 }
