@@ -13,5 +13,6 @@ namespace PrazoPosts.Repository.Core
         void Update(string _id, T model);
         void Delete(string _id);
         T GetById(string _id);
+        T GetByUserIdAndId(string UserId, string _id);
     }
 }

@@ -3,14 +3,16 @@ import {LoadingController, NavController, NavParams, ViewController} from 'ionic
 import {AuthorService} from "../../../app/modules/services/author.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormValidatorService} from "../../../app/modules/core/form-validator.service";
-import {Author} from "../../../app/dto/author";
 import {ToasterService} from "../../../app/modules/core/toaster.service";
+import {Post} from "../../../app/dto/post";
+import {PostService} from "../../../app/modules/services/post.service";
+import {Author} from "../../../app/dto/author";
 
 @Component({
-  selector: 'modal-add-author',
-  templateUrl: 'edit-author.html'
+  selector: 'modal-add-post',
+  templateUrl: 'edit-post.html'
 })
-export class EditAuthor {
+export class EditPost {
 
   constructor(public navCtrl: NavController,
               private loadingCtrl: LoadingController,
@@ -19,22 +21,33 @@ export class EditAuthor {
               private formValidator: FormValidatorService,
               private toastSvc: ToasterService,
               private params: NavParams,
-              private authorService: AuthorService) {
+              private authorService: AuthorService,
+              private postService: PostService) {
     this.formGroup = this.fb.group({
-      name: [null],
+      title: [null],
+      authorId: [null],
+      content: [null],
     });
-    this.author = this.params.get('author');
-    if (this.author) {
-      this.formGroup.patchValue(this.author);
+    this.post = this.params.get('post');
+    if (this.post) {
+      this.formGroup.patchValue(this.post);
       this.title = "Alterar";
     }
+    this.loadAuthors();
   }
 
-  author: Author;
+  post: Post = null;
+  authors: Author[];
   title: string = "Novo";
   formGroup: FormGroup;
 
   ionViewDidLoad() {
+  }
+
+  loadAuthors() {
+    this.authorService.getAuthors().subscribe(authors => {
+      this.authors = authors;
+    });
   }
 
   save() {
@@ -42,11 +55,11 @@ export class EditAuthor {
     if (!this.formGroup.valid) {
       return;
     }
+    let post = <Post>Object.assign(this.post || {}, this.formGroup.value);
     let loading = this.loadingCtrl.create();
     loading.present();
-    let author = <Author>Object.assign(this.author || {}, this.formGroup.value);
-    if (author.id) {
-      this.authorService.update(author).subscribe(() => {
+    if (post.id) {
+      this.postService.update(post).subscribe(() => {
         loading.dismiss();
         this.dismiss();
       }, () => {
@@ -54,7 +67,7 @@ export class EditAuthor {
         loading.dismiss();
       });
     } else {
-      this.authorService.create(author).subscribe(() => {
+      this.postService.create(post).subscribe(() => {
         loading.dismiss();
         this.dismiss();
       }, () => {

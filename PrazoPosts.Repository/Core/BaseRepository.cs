@@ -43,6 +43,12 @@ namespace PrazoPosts.Repository.Core
             var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(_id));
             return _collection.Find(filter).FirstOrDefault();
         }
+
+        public T GetByUserIdAndId(string UserId, string _id)
+        {
+            var filter = Builders<T>.Filter.Eq("UserId", UserId) &  Builders<T>.Filter.Eq("_id", ObjectId.Parse(_id));
+            return _collection.Find(filter).FirstOrDefault();
+        }
         public T GetByFilter(FilterDefinition<T> filter)
         {
             return _collection.Find(filter).FirstOrDefault();

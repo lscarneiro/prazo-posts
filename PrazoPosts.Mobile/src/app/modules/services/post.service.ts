@@ -9,8 +9,20 @@ export class PostService {
   constructor(private httpService: HttpService) {
   }
 
-  getPosts(): Observable<Post> {
-    return this.httpService.get<Post>(`posts`);
+  getPosts(): Observable<Post[]> {
+    return this.httpService.get<Post[]>(`posts`);
+  }
+
+  create(data: Post): Observable<Post> {
+    return this.httpService.post<Post>(`posts`, data);
+  }
+
+  update(data: Post): Observable<Post> {
+    return this.httpService.put<Post>(`posts/${data.id}`, data);
+  }
+
+  delete(id: string): Observable<any> {
+    return this.httpService.delete(`posts/${id}`);
   }
 
 }

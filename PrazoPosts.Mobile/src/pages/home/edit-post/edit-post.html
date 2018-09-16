@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Cancelar</button>
+    </ion-buttons>
+    <ion-title>{{title}} post</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-bounce>
+  <form novalidate [formGroup]="formGroup">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked
+                   [class.with-error]="formGroup.get('title').hasError('required') && formGroup.get('title').touched">
+          Título
+        </ion-label>
+        <ion-input formControlName="title" required></ion-input>
+        <div item-content class="error-message"
+             *ngIf="formGroup.get('title').hasError('required') && formGroup.get('title').touched">
+          <small text-start>Título é obrigatório</small>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked
+                   [class.with-error]="formGroup.get('authorId').hasError('required') && formGroup.get('authorId').touched">
+          Autor
+        </ion-label>
+        <ion-select formControlName="authorId" required>
+          <ion-option value="{{author.id}}" *ngFor="let author of authors">{{author.name}}</ion-option>
+        </ion-select>
+        <div item-content class="error-message"
+             *ngIf="formGroup.get('authorId').hasError('required') && formGroup.get('authorId').touched">
+          <small text-start>Autor é obrigatório</small>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked
+                   [class.with-error]="formGroup.get('content').hasError('required') && formGroup.get('content').touched">
+          Conteúdo
+        </ion-label>
+        <ion-textarea formControlName="content" required></ion-textarea>
+        <div item-content class="error-message"
+             *ngIf="formGroup.get('content').hasError('required') && formGroup.get('content').touched">
+          <small text-start>Conteúdo é obrigatório</small>
+        </div>
+      </ion-item>
+    </ion-list>
+  </form>
+  <div padding-left padding-right>
+    <button ion-button block padding (click)="save()">
+      Salvar
+    </button>
+  </div>
+</ion-content>

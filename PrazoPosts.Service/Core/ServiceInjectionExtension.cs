@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PrazoPosts.Repository.Core;
 using PrazoPosts.Service.Auth;
 using PrazoPosts.Service.Authors;
+using PrazoPosts.Service.BlogPosts;
 using PrazoPosts.Service.Users;
 
 namespace PrazoPosts.Service.Core
@@ -21,6 +22,7 @@ namespace PrazoPosts.Service.Core
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<IBlogPostService, BlogPostService>();
         }
     }
 }

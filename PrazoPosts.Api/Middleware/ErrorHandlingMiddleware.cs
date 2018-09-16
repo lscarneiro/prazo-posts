@@ -33,6 +33,8 @@ namespace PrazoPosts.Api.Middleware
             var code = HttpStatusCode.InternalServerError; // 500 if unexpected
 
             if (exception is NotFoundException) code = HttpStatusCode.NotFound;
+            if (exception is ValidationException) code = HttpStatusCode.BadRequest;
+            if (exception is UnauthorizedActionException) code = HttpStatusCode.Unauthorized;
 
             var result = JsonConvert.SerializeObject(new { error = exception.Message });
             context.Response.ContentType = "application/json";

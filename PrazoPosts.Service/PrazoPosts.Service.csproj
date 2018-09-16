@@ -47,6 +47,7 @@
     <Folder Include="Authors\Validation\" />
     <Folder Include="Auth\" />
     <Folder Include="Auth\Validation\" />
+    <Folder Include="BlogPosts\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Users\Validation\IRegisterUserValidator.cs" />

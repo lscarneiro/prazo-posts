@@ -4,6 +4,6 @@ export interface Post {
   id: string;
   authorId: string;
   author: Author;
-  tittle: string;
+  title: string;
   content: string;
 }

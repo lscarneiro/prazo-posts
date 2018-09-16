@@ -23,7 +23,7 @@ namespace PrazoPosts.Service.Tests
             var id = "5b9d8e952e6adf8005dbcf17";
             var expected = "TestSubject";
             blogPostRepositoryMock.Setup(x => x.PostCountByAuthor(It.IsAny<string>())).Returns(() => 0);
-            authorRepositoryMock.Setup(x => x.GetByFilter(It.IsAny<FilterDefinition<Author>>())).Returns(new Author
+            authorRepositoryMock.Setup(x => x.GetByUserIdAndId(It.IsAny<string>(), It.IsAny<string>())).Returns(new Author
             {
                 Name = expected
             });
@@ -73,9 +73,13 @@ namespace PrazoPosts.Service.Tests
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
             Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
+            authorRepositoryMock.Setup(x => x.GetByUserIdAndId(It.IsAny<string>(), It.IsAny<string>())).Returns(new Author
+            {
+                Name = "Test1"
+            });
             var authorData = new AuthorDTO
             {
-                Name = "Test1",
+                Name = "Test2",
             };
 
             var mapper = TestHelper.GetMapper();
@@ -116,8 +120,7 @@ namespace PrazoPosts.Service.Tests
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
             Mock<IBlogPostRepository> blogPostRepositoryMock = new Mock<IBlogPostRepository>();
-            authorRepositoryMock.Setup(x => x.GetById(It.IsAny<string>())).Returns(new Author());
-            //blogPostRepositoryMock.Setup(x => x.DeleteByAuthorId(It.IsAny<string>())).Returns(new Author());
+            authorRepositoryMock.Setup(x => x.GetByUserIdAndId(It.IsAny<string>(), It.IsAny<string>())).Returns(new Author());
             var mapper = TestHelper.GetMapper();
             var sut = new AuthorService(authorRepositoryMock.Object, blogPostRepositoryMock.Object, mapper);
             sut.DeleteAuthor("12345", "5b9d8e952e6adf8005dbcf17");

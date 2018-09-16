@@ -29,15 +29,9 @@ namespace PrazoPosts.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] UserDTO user)
         {
-            try
-            {
-                _userService.RegisterUser(user);
-                return Ok();
-            }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.ToJson());
-            }
+
+            _userService.RegisterUser(user);
+            return Ok();
         }
     }
 }

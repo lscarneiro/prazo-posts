@@ -37,29 +37,31 @@ namespace PrazoPosts.Service.Authors
             author.UserId = userId;
             _authorRepository.Insert(author);
         }
-        public void UpdateAuthor(string userId, string id, AuthorDTO authorData)
+        public void UpdateAuthor(string userId, string _id, AuthorDTO authorData)
         {
             var validator = new CreateUpdateAuthorValidator();
             var validationResult = validator.Validate(authorData);
 
             if (!validationResult.IsValid) throw new ValidationException(validationResult.Errors);
-            var author = _mapper.Map<AuthorDTO, Author>(authorData);
-            author.Id = ObjectId.Parse(id);
+            var author = _authorRepository.GetByUserIdAndId(userId, _id);
+            if (author == null) throw new NotFoundException("Autor não encontrado");
+            author = _mapper.Map<AuthorDTO, Author>(authorData);
+            author.Id = ObjectId.Parse(_id);
             author.UserId = userId;
-            _authorRepository.Update(id, author);
+            _authorRepository.Update(_id, author);
         }
         public void DeleteAuthor(string userId, string _id)
         {
-            var author = _authorRepository.GetById(_id);
-            if (author == null) throw new UnauthorizedActionException();
+            var author = _authorRepository.GetByUserIdAndId(userId, _id);
+            if (author == null) throw new NotFoundException("Autor não encontrado");
             _blogPostRepository.DeleteByAuthorId(_id);
             _authorRepository.Delete(_id);
         }
 
         public AuthorDTO GetAuthor(string userId, string _id)
         {
-            var filter = Builders<Author>.Filter.Eq("UserId", userId) & Builders<Author>.Filter.Eq("_id", ObjectId.Parse(_id));
-            var author = _authorRepository.GetByFilter(filter);
+            var author = _authorRepository.GetByUserIdAndId(userId, _id);
+            if (author == null) throw new NotFoundException("Autor não encontrado");
             var authorDto = _mapper.Map<Author, AuthorDTO>(author);
             authorDto.PostCount = _blogPostRepository.PostCountByAuthor(author.Id.ToString());
             return authorDto;

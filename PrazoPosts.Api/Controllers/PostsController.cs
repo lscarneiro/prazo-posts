@@ -13,7 +13,7 @@ namespace PrazoPosts.Api.Controllers
     [Route("[controller]")]
     [Authorize]
     [ApiController]
-    public class PostsController : ControllerBase
+    public class PostsController : PrazoController
     {
         IBlogPostService _blogPostService;
         public PostsController(IBlogPostService blogPostService)
@@ -23,37 +23,34 @@ namespace PrazoPosts.Api.Controllers
 
         // GET posts
         [HttpGet]
-        public ActionResult<IEnumerable<BlogPostDTO>> Get()
+        public IActionResult Get()
         {
-            return new BlogPostDTO[] {
-                new BlogPostDTO { Title = "Blog 1"},
-                new BlogPostDTO { Title = "Blog 2"}
-            };
-        }
-
-        // GET posts/{id}
-        [HttpGet("{id}")]
-        public ActionResult<BlogPostDTO> Get(int id)
-        {
-            return new BlogPostDTO { Title = "Blog 1" };
+            var authors = _blogPostService.GetBlogPosts(CurrentUserId);
+            return Ok(authors);
         }
 
         // POST posts
         [HttpPost]
-        public void Post([FromBody] BlogPostDTO value)
+        public IActionResult Post([FromBody] BlogPostDTO post)
         {
+            _blogPostService.CreateBlogPost(CurrentUserId, post);
+            return Ok();
         }
 
         // PUT posts/{id}
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] BlogPostDTO value)
+        public IActionResult Put(string id, [FromBody] BlogPostDTO post)
         {
+            _blogPostService.UpdateBlogPost(CurrentUserId, id, post);
+            return Ok();
         }
 
         // DELETE posts/{id}
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            _blogPostService.DeleteBlogPost(CurrentUserId, id); 
+            return Ok();
         }
     }
 }

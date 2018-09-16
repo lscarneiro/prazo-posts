@@ -7,7 +7,7 @@ namespace PrazoPosts.Model
     public class BlogPost
     {
         [BsonId]
-        public ObjectId Id { get; }
+        public ObjectId Id { get; set; }
         public string UserId { get; set; }
         public string AuthorId { get; set; }
         public string Title { get; set; }

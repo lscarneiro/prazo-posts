@@ -31,37 +31,24 @@ namespace PrazoPosts.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] AuthorDTO author)
         {
-            try
-            {
-                _authorService.CreateAuthor(CurrentUserId, author);
-                return Ok();
-            }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.ToJson());
-            }
+            _authorService.CreateAuthor(CurrentUserId, author);
+            return Ok();
         }
 
         // PUT authors/{id}
         [HttpPut("{id}")]
         public IActionResult Put(string id, [FromBody] AuthorDTO author)
         {
-            try
-            {
-                _authorService.UpdateAuthor(CurrentUserId, id, author);
-                return Ok();
-            }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.ToJson());
-            }
+            _authorService.UpdateAuthor(CurrentUserId, id, author);
+            return Ok();
         }
 
         // DELETE authors/{id}
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public IActionResult Delete(string id)
         {
             _authorService.DeleteAuthor(CurrentUserId, id);
+            return Ok();
         }
     }
 
