@@ -38,5 +38,9 @@ namespace PrazoPosts.Repository.Core
             var filter = Builders<T>.Filter.Eq("_id", _id);
             return _collection.Find(filter).FirstOrDefault();
         }
+        public T GetByFilter(FilterDefinition<T> filter)
+        {
+            return _collection.Find(filter).FirstOrDefault();
+        }
     }
 }

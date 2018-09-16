@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PrazoPosts.Dto;
@@ -10,7 +11,7 @@ namespace PrazoPosts.Api.Controllers
     [Route("[controller]")]
     [Authorize]
     [ApiController]
-    public class AuthorsController : ControllerBase
+    public class AuthorsController : PrazoController
     {
         IAuthorService _authorService;
         public AuthorsController(IAuthorService authorService)
@@ -22,8 +23,7 @@ namespace PrazoPosts.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var name = User.Identity.Name;
-            var authors = _authorService.GetAuthors();
+            var authors = _authorService.GetAuthors(CurrentUserId);
             return Ok(authors);
         }
 
@@ -33,7 +33,7 @@ namespace PrazoPosts.Api.Controllers
         {
             try
             {
-                _authorService.CreateAuthor(author);
+                _authorService.CreateAuthor(CurrentUserId, author);
                 return Ok();
             }
             catch (ValidationException ex)

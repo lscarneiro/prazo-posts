@@ -6,9 +6,9 @@ namespace PrazoPosts.Service.Authors
 {
     public interface IAuthorService
     {
-        void CreateAuthor(AuthorDTO authorData);
-        AuthorDTO GetAuthor(string _id);
-        IList<AuthorDTO> GetAuthors();
-        void DeleteAuthor(string _id);
+        void CreateAuthor(string userId, AuthorDTO authorData);
+        AuthorDTO GetAuthor(string userId, string _id);
+        IList<AuthorDTO> GetAuthors(string userId);
+        void DeleteAuthor(string userId, string _id);
     }
 }

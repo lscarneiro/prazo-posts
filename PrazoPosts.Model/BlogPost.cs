@@ -8,8 +8,9 @@ namespace PrazoPosts.Model
     {
         [BsonId]
         public ObjectId Id { get; }
+        public string UserId { get; set; }
+        public string AuthorId { get; set; }
         public string Title { get; set; }
-        public Author Author { get; set; }
         public string Content { get; set; }
         public string CoverUrl { get; set; }
     }

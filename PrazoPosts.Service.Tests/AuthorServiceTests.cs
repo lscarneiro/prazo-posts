@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using MongoDB.Driver;
 using Moq;
 using PrazoPosts.Dto;
 using PrazoPosts.Model;
@@ -20,13 +21,13 @@ namespace PrazoPosts.Service.Tests
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
             var id = "abc123";
             var expected = "TestSubject";
-            authorRepositoryMock.Setup(x => x.GetById(It.Is<string>(s => s == id))).Returns(new Author
+            authorRepositoryMock.Setup(x => x.GetByFilter(It.IsAny<FilterDefinition<Author>>())).Returns(new Author
             {
                 Name = expected
             });
             var mapper = TestHelper.GetMapper();
             var sut = new AuthorService(authorRepositoryMock.Object, mapper);
-            var result = sut.GetAuthor(id);
+            var result = sut.GetAuthor("12345", id);
             Assert.NotNull(result);
             Assert.Equal(expected, result.Name);
         }
@@ -34,7 +35,7 @@ namespace PrazoPosts.Service.Tests
         public void ShouldGetAuthors()
         {
             Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
-            authorRepositoryMock.Setup(x => x.GetAll(null)).Returns(() => new List<Author>
+            authorRepositoryMock.Setup(x => x.GetAll(It.IsAny<FilterDefinition<Author>>())).Returns(() => new List<Author>
             {
                 new Author { Name = "Test1"},
                 new Author { Name = "Test2"},
@@ -42,33 +43,9 @@ namespace PrazoPosts.Service.Tests
             });
             var mapper = TestHelper.GetMapper();
             var sut = new AuthorService(authorRepositoryMock.Object, mapper);
-            var result = sut.GetAuthors();
+            var result = sut.GetAuthors("12345");
             Assert.NotNull(result);
             Assert.Equal(3, result.Count);
-        }
-
-        [Fact]
-        public void ShouldNotGetWrongAuthor()
-        {
-            Mock<IAuthorRepository> authorRepositoryMock = new Mock<IAuthorRepository>();
-            var id = "abc123";
-            authorRepositoryMock.Setup(x => x.GetById(It.Is<string>(s => s == id))).Returns(new Author
-            {
-                Name = "TestSubject"
-            }); 
-            var mapper = TestHelper.GetMapper();
-            var sut = new AuthorService(authorRepositoryMock.Object, mapper);
-            var result = sut.GetAuthor(id + "something");
-            Assert.Null(result);
-
-            var expected = "TestSubjectSomething";
-            authorRepositoryMock.Setup(x => x.GetById(It.Is<string>(s => s == id + "something"))).Returns(new Author
-            {
-                Name = expected
-            });
-            result = sut.GetAuthor(id + "something");
-            Assert.NotNull(result);
-            Assert.Equal(expected, result.Name);
         }
 
         [Fact]
@@ -82,7 +59,7 @@ namespace PrazoPosts.Service.Tests
 
             var mapper = TestHelper.GetMapper();
             var sut = new AuthorService(authorRepositoryMock.Object, mapper);
-            sut.CreateAuthor(authorData);
+            sut.CreateAuthor("12345", authorData);
         }
 
         [Fact]
@@ -120,7 +97,7 @@ namespace PrazoPosts.Service.Tests
 
             var mapper = TestHelper.GetMapper();
             var sut = new AuthorService(authorRepositoryMock.Object, mapper);
-            sut.DeleteAuthor("abc123");
+            sut.DeleteAuthor("12345", "abc123");
         }
     }
 }
