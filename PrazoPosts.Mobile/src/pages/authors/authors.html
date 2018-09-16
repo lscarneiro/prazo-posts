@@ -1,0 +1,23 @@
+<ion-toolbar>
+  <button ion-button menuToggle icon-only>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Autores</ion-title>
+  <ion-buttons end>
+    <button ion-button icon-only (click)="addAuthor()">
+      <ion-icon name="add-circle"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="authors.length == 0" text-center>
+      Você ainda não possui autores =(
+    </ion-item>
+    <ion-card ion-item *ngFor="let author of authors">
+      {{author.name}}
+    </ion-card>
+  </ion-list>
+</ion-content>

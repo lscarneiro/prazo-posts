@@ -30,12 +30,12 @@ namespace PrazoPosts.Repository.Core
 
         public virtual void Delete(string _id)
         {
-            _collection.DeleteOne(Builders<T>.Filter.Eq("_id", _id));
+            _collection.DeleteOne(Builders<T>.Filter.Eq("_id", ObjectId.Parse(_id)));
         }
 
         public T GetById(string _id)
         {
-            var filter = Builders<T>.Filter.Eq("_id", _id);
+            var filter = Builders<T>.Filter.Eq("_id", ObjectId.Parse(_id));
             return _collection.Find(filter).FirstOrDefault();
         }
         public T GetByFilter(FilterDefinition<T> filter)

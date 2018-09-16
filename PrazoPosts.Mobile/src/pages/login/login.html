@@ -1,0 +1,36 @@
+<ion-content no-bounce>
+  <form novalidate [formGroup]="formGroup">
+    <ion-list >
+      <ion-item>
+        <ion-label floating
+                   [class.with-error]="formGroup.get('email').hasError('required') && formGroup.get('email').touched">
+          E-mail
+        </ion-label>
+        <ion-input formControlName="email" type="email" required></ion-input>
+        <div item-content class="error-message"
+             *ngIf="formGroup.get('email').hasError('required') && formGroup.get('email').touched">
+          <small text-start>E-mail é obrigatório</small>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label floating
+                   [class.with-error]="formGroup.get('password').hasError('required') && formGroup.get('password').touched">
+          Senha
+        </ion-label>
+        <ion-input formControlName="password" type="password" required></ion-input>
+        <div item-content class="error-message"
+             *ngIf="formGroup.get('password').hasError('required') && formGroup.get('password').touched">
+          <small text-start>E-mail é obrigatório</small>
+        </div>
+      </ion-item>
+    </ion-list>
+  </form>
+  <div padding-left padding-right>
+    <button ion-button block padding class="btn-login" (click)="login()">
+      Entrar
+    </button>
+    <button ion-button block class="btn-border" icon-start (click)="signUp()">
+      Nova conta
+    </button>
+  </div>
+</ion-content>

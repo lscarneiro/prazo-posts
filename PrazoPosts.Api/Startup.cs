@@ -34,6 +34,14 @@ namespace PrazoPosts.Api
             //services.AddAuthorization(auth => {
             //    auth.AddPolicy()
             //})
+            services.AddCors(options => options.AddPolicy("AllowAllOrigins",
+                            builder =>
+                            {
+                                builder.AllowAnyOrigin()
+                                       .AllowAnyMethod()
+                                       .AllowAnyHeader()
+                                       .AllowCredentials();
+                            }));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -70,6 +78,7 @@ namespace PrazoPosts.Api
             //app.UseHttpsRedirection(); //Deactivating HTTPS enforcement
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
             app.UseAuthentication();
+            app.UseCors("AllowAllOrigins");
             app.UseMvc();
         }
     }

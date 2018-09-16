@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using PrazoPosts.Dto;
 using PrazoPosts.Model;
@@ -40,7 +41,7 @@ namespace PrazoPosts.Service.Authors
 
         public AuthorDTO GetAuthor(string userId, string _id)
         {
-            var filter = Builders<Author>.Filter.Eq("UserId", userId) & Builders<Author>.Filter.Eq("_id", _id);
+            var filter = Builders<Author>.Filter.Eq("UserId", userId) & Builders<Author>.Filter.Eq("_id", ObjectId.Parse(_id));
             var author = _authorRepository.GetByFilter(filter);
             return _mapper.Map<Author, AuthorDTO>(author);
         }
