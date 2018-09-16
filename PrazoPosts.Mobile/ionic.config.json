@@ -1,0 +1,7 @@
+{
+  "name": "PrazoPosts.Mobile",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
