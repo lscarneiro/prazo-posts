@@ -16,11 +16,17 @@
   <ion-list>
     <ion-item-sliding *ngFor="let author of authors">
       <ion-item>
-        <p>{{author.name}}</p>
+        <h2>{{author.name}}</h2>
+        <p>{{author.postCount}} Postagens</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary">
+          <ion-icon name="create"></ion-icon>
           Editar
+        </button>
+        <button ion-button color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Excluir
         </button>
       </ion-item-options>
     </ion-item-sliding>

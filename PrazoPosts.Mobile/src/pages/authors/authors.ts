@@ -19,13 +19,20 @@ export class AuthorsPage {
   }
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() {
     this.authorService.getAuthors().subscribe(authors => {
       this.authors = authors;
     })
   }
 
   addAuthor() {
-    let myModal = this.modalCtrl.create(AddAuthor);
-    myModal.present();
+    let addAuthorModal = this.modalCtrl.create(AddAuthor);
+    addAuthorModal.present();
+    addAuthorModal.onDidDismiss(() => {
+      this.loadData();
+    })
   }
 }

@@ -14,7 +14,7 @@
   <form novalidate [formGroup]="formGroup">
     <ion-list>
       <ion-item>
-        <ion-label floating
+        <ion-label stacked
                    [class.with-error]="formGroup.get('name').hasError('required') && formGroup.get('name').touched">
           Nome do autor
         </ion-label>
