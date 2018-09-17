@@ -98,7 +98,7 @@ export class HttpService {
         return of(null);
       } else if (err.status == 400 && err.error.validationErrors) {
         this.onServerValidationErrors.next(err.error.validationErrors);
-      } else if ((err.status == 400 || err.status == 500) && err.error.error) {
+      } else if ((err.status == 400 || err.status == 500 || err.status == 404) && err.error.error) {
         this.toastSvc.showError(err.error.error);
         return of(null);
       } else {
