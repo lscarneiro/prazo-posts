@@ -60,7 +60,7 @@ export class LoginPage {
     this.authService.authenticate(authData)
       .subscribe((tokenData) => {
         if (tokenData) {
-          this.tokenService.setAcessToken(tokenData.token);
+          this.tokenService.setAcessToken(tokenData.Token);
           loading.dismiss();
           this.goToHome();
         } else {

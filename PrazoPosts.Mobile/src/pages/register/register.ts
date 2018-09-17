@@ -63,7 +63,7 @@ export class RegisterPage {
     this.userService.register(authData)
       .subscribe((tokenData) => {
         if (tokenData) {
-          this.tokenService.setAcessToken(tokenData.token);
+          this.tokenService.setAcessToken(tokenData.Token);
           loading.dismiss();
           this.goToHome();
         } else {
