@@ -30,6 +30,12 @@ export class LoginPage {
       Email: [null],
       Password: [null],
     });
+    this.http.onServerValidationErrors
+      .do((r) => this.serverValidationMap = r)
+      .delay(1)
+      .subscribe(r => {
+        this.formValidator.validate(this.formGroup);
+      });
   }
 
   ionViewDidLoad() {
