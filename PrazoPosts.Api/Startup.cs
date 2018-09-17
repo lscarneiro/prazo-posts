@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Serialization;
 using PrazoPosts.Api.Middleware;
 using PrazoPosts.Service.Core;
 
@@ -30,7 +31,11 @@ namespace PrazoPosts.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore().AddAuthorization().AddJsonFormatters().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvcCore()
+                    .AddAuthorization()
+                    .AddJsonFormatters()
+                    .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             //services.AddAuthorization(auth => {
             //    auth.AddPolicy()
             //})
