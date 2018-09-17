@@ -7,6 +7,8 @@ import {HomePage} from "../home/home";
 import {AuthService} from "../../app/modules/services/auth.service";
 import {User} from "../../app/dto/user";
 import {RegisterPage} from "../register/register";
+import {HttpService} from "../../app/modules/core/http.service";
+import {ServerValidationMap} from "../../app/modules/core/model/server-validation-map";
 
 @Component({
   selector: 'page-login',
@@ -20,6 +22,7 @@ export class LoginPage {
               private formValidator: FormValidatorService,
               private tokenService: TokenService,
               private loadingCtrl: LoadingController,
+              private http: HttpService,
               private menuCtrl: MenuController,
   ) {
 
@@ -38,6 +41,7 @@ export class LoginPage {
   }
 
   formGroup: FormGroup;
+  serverValidationMap: ServerValidationMap;
 
   login(): void {
     this.formValidator.validate(this.formGroup);

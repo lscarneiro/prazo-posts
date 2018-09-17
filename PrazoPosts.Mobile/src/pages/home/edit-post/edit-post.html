@@ -13,29 +13,32 @@
     <ion-list>
       <ion-item>
         <ion-label stacked>Título</ion-label>
-        <ion-input formControlName="Title" required></ion-input>
-        <div item-content class="error-message"
-             *ngIf="formGroup.get('Title').hasError('required') && formGroup.get('Title').touched">
-          <small text-start>Título é obrigatório</small>
-        </div>
+        <ion-input formControlName="Title" required [appValidateServer]="serverValidationMap"></ion-input>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Title" errorMessage="Título é obrigatório">
+        </app-client-validation-message>
+        <app-server-validation-message item-content controlName="Title" [formGroup]="formGroup">
+        </app-server-validation-message>
       </ion-item>
       <ion-item>
         <ion-label stacked>Autor</ion-label>
-        <ion-select formControlName="AuthorId" required>
+        <ion-select formControlName="AuthorId" required [appValidateServer]="serverValidationMap">
           <ion-option value="{{author.Id}}" *ngFor="let author of authors">{{author.Name}}</ion-option>
         </ion-select>
-        <div item-content class="error-message"
-             *ngIf="formGroup.get('AuthorId').hasError('required') && formGroup.get('AuthorId').touched">
-          <small text-start>Autor é obrigatório</small>
-        </div>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="AuthorId" errorMessage="Autor é obrigatório">
+        </app-client-validation-message>
+        <app-server-validation-message item-content controlName="AuthorId" [formGroup]="formGroup">
+        </app-server-validation-message>
       </ion-item>
       <ion-item>
         <ion-label stacked>Conteúdo</ion-label>
-        <ion-textarea formControlName="Content" required></ion-textarea>
-        <div item-content class="error-message"
-             *ngIf="formGroup.get('Content').hasError('required') && formGroup.get('Content').touched">
-          <small text-start>Conteúdo é obrigatório</small>
-        </div>
+        <ion-textarea formControlName="Content" required [appValidateServer]="serverValidationMap"></ion-textarea>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Content" errorMessage="Conteúdo é obrigatório">
+        </app-client-validation-message>
+        <app-server-validation-message item-content controlName="Content" [formGroup]="formGroup">
+        </app-server-validation-message>
       </ion-item>
     </ion-list>
   </form>

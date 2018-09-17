@@ -49,7 +49,7 @@ export class RegisterPage {
     }
   }
 
-  serverValidationMap: ServerValidationMap | string;
+  serverValidationMap: ServerValidationMap;
   formGroup: FormGroup;
 
   register(): void {

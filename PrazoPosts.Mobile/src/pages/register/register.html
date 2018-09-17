@@ -5,19 +5,17 @@
       <ion-item>
         <ion-label stacked> Nome</ion-label>
         <ion-input formControlName="Name" required [appValidateServer]="serverValidationMap"></ion-input>
-        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required" controlName="Name">
-          <small text-start>Nome é obrigatório</small>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Name" errorMessage="Nome é obrigatório">
         </app-client-validation-message>
         <app-server-validation-message item-content controlName="Name" [formGroup]="formGroup">
         </app-server-validation-message>
       </ion-item>
       <ion-item>
-        <ion-label stacked>
-          E-mail
-        </ion-label>
+        <ion-label stacked> E-mail</ion-label>
         <ion-input formControlName="Email" type="Email" required [appValidateServer]="serverValidationMap"></ion-input>
-        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required" controlName="Email">
-          <small text-start>Email é obrigatório</small>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Email" errorMessage="Email é obrigatório">
         </app-client-validation-message>
         <app-server-validation-message item-content controlName="Email" [formGroup]="formGroup">
         </app-server-validation-message>
@@ -26,8 +24,8 @@
         <ion-label stacked> Senha</ion-label>
         <ion-input formControlName="Password" type="Password" required
                    [appValidateServer]="serverValidationMap"></ion-input>
-        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required" controlName="Password">
-          <small text-start>Senha é obrigatória</small>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Password" errorMessage="Senha é obrigatória">
         </app-client-validation-message>
         <app-server-validation-message item-content controlName="Password" [formGroup]="formGroup">
         </app-server-validation-message>
@@ -37,8 +35,8 @@
         <ion-input formControlName="PasswordConfirmation" type="Password" required
                    [appValidateServer]="serverValidationMap"></ion-input>
         <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
-                                       controlName="PasswordConfirmation">
-          <small text-start>Confirmação de senha é obrigatória</small>
+                                       controlName="PasswordConfirmation"
+                                       errorMessage="Confirmação de senha é obrigatória">
         </app-client-validation-message>
         <app-server-validation-message item-content controlName="PasswordConfirmation" [formGroup]="formGroup">
         </app-server-validation-message>

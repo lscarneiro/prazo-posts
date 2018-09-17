@@ -14,6 +14,7 @@ export class ClientValidationMessage {
   @Input() formGroup: FormGroup;
   @Input() controlName: string;
   @Input() errorName: string;
+  @Input() errorMessage: string;
 
   hasError(): boolean {
     if (!this.controlName) return false;

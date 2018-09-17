@@ -7,6 +7,8 @@ import {ToasterService} from "../../../app/modules/core/toaster.service";
 import {Post} from "../../../app/dto/post";
 import {PostService} from "../../../app/modules/services/post.service";
 import {Author} from "../../../app/dto/author";
+import {HttpService} from "../../../app/modules/core/http.service";
+import {ServerValidationMap} from "../../../app/modules/core/model/server-validation-map";
 
 @Component({
   selector: 'modal-add-post',
@@ -20,6 +22,7 @@ export class EditPost {
               private viewCtrl: ViewController,
               private formValidator: FormValidatorService,
               private toastSvc: ToasterService,
+              private http: HttpService,
               private params: NavParams,
               private authorService: AuthorService,
               private postService: PostService) {
@@ -28,6 +31,12 @@ export class EditPost {
       AuthorId: [null],
       Content: [null],
     });
+    this.http.onServerValidationErrors
+      .do((r) => this.serverValidationMap = r)
+      .delay(1)
+      .subscribe(r => {
+        this.formValidator.validate(this.formGroup);
+      });
     this.post = this.params.get('post');
     if (this.post) {
       this.formGroup.patchValue(this.post);
@@ -40,6 +49,7 @@ export class EditPost {
   authors: Author[];
   title: string = "Novo";
   formGroup: FormGroup;
+  serverValidationMap: ServerValidationMap;
 
   ionViewDidLoad() {
   }

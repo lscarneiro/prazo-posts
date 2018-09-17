@@ -8,22 +8,25 @@
           <ion-icon name="mail"></ion-icon>
           E-mail
         </ion-label>
-        <ion-input formControlName="Email" type="Email" required></ion-input>
-        <div item-content class="error-message"
-             *ngIf="formGroup.get('Email').hasError('required') && formGroup.get('Email').touched">
-          <small text-start>E-mail é obrigatório</small>
-        </div>
+        <ion-input formControlName="Email" type="Email" required [appValidateServer]="serverValidationMap"></ion-input>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Email" errorMessage="Email é obrigatório">
+        </app-client-validation-message>
+        <app-server-validation-message item-content controlName="Email" [formGroup]="formGroup">
+        </app-server-validation-message>
       </ion-item>
       <ion-item>
         <ion-label stacked>
           <ion-icon name="lock"></ion-icon>
           Senha
         </ion-label>
-        <ion-input formControlName="Password" type="Password" required></ion-input>
-        <div item-content class="error-message"
-             *ngIf="formGroup.get('Password').hasError('required') && formGroup.get('Password').touched">
-          <small text-start>E-mail é obrigatório</small>
-        </div>
+        <ion-input formControlName="Password" type="Password" required
+                   [appValidateServer]="serverValidationMap"></ion-input>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Password" errorMessage="Senha é obrigatória">
+        </app-client-validation-message>
+        <app-server-validation-message item-content controlName="Password" [formGroup]="formGroup">
+        </app-server-validation-message>
       </ion-item>
     </ion-list>
   </form>

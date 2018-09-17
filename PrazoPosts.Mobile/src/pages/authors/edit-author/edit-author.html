@@ -13,11 +13,12 @@
     <ion-list>
       <ion-item>
         <ion-label stacked>Nome do autor</ion-label>
-        <ion-input formControlName="Name" required></ion-input>
-        <div item-content class="error-message"
-             *ngIf="formGroup.get('Name').hasError('required') && formGroup.get('Name').touched">
-          <small text-start>Nome é obrigatório</small>
-        </div>
+        <ion-input formControlName="Name" required [appValidateServer]="serverValidationMap"></ion-input>
+        <app-client-validation-message item-content [formGroup]="formGroup" errorName="required"
+                                       controlName="Name" errorMessage="Nome é obrigatório">
+        </app-client-validation-message>
+        <app-server-validation-message item-content controlName="Name" [formGroup]="formGroup">
+        </app-server-validation-message>
       </ion-item>
     </ion-list>
   </form>

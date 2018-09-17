@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {FormValidatorService} from "../../../app/modules/core/form-validator.service";
 import {Author} from "../../../app/dto/author";
 import {ToasterService} from "../../../app/modules/core/toaster.service";
+import {ServerValidationMap} from "../../../app/modules/core/model/server-validation-map";
+import {HttpService} from "../../../app/modules/core/http.service";
 
 @Component({
   selector: 'modal-add-author',
@@ -18,11 +20,18 @@ export class EditAuthor {
               private viewCtrl: ViewController,
               private formValidator: FormValidatorService,
               private toastSvc: ToasterService,
+              private http: HttpService,
               private params: NavParams,
               private authorService: AuthorService) {
     this.formGroup = this.fb.group({
       Name: [null],
     });
+    this.http.onServerValidationErrors
+      .do((r) => this.serverValidationMap = r)
+      .delay(1)
+      .subscribe(r => {
+        this.formValidator.validate(this.formGroup);
+      });
     this.author = this.params.get('author');
     if (this.author) {
       this.formGroup.patchValue(this.author);
@@ -33,6 +42,7 @@ export class EditAuthor {
   author: Author;
   title: string = "Novo";
   formGroup: FormGroup;
+  serverValidationMap: ServerValidationMap;
 
   ionViewDidLoad() {
   }
