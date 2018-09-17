@@ -45,3 +45,9 @@ ion-menu {
     }
   }
 }
+ion-content .scroll-content {
+  @include design-gradient(to bottom);
+}
+ion-toolbar .toolbar-background {
+  background-color: rgb(204, 204, 204);
+}

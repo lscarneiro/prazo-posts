@@ -24,7 +24,7 @@ $app-direction: ltr;
 
 
 @mixin design-gradient($direction) {
-  background: linear-gradient($direction, rgba(218, 31, 31, 0.67), #ddd);
+  background: linear-gradient($direction, rgb(153, 153, 153), #ddd);
 }
 
 // Named Color Variables

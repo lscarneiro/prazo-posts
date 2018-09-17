@@ -1,9 +1,6 @@
 page-register {
-  h1 {
-    font-family: "Helvetica", sans-serif;
-  }
   .scroll-content {
-    background: linear-gradient(to top, rgba(166, 29, 29, 0.85), #ddd);
+    @include design-gradient(to top);
     display: flex;
     flex-direction: column;
     justify-content: center;
