@@ -4,6 +4,7 @@ using Moq;
 using PrazoPosts.Dto;
 using PrazoPosts.Model;
 using PrazoPosts.Repository.Interfaces;
+using PrazoPosts.Service.Auth;
 using PrazoPosts.Service.Core;
 using PrazoPosts.Service.Exceptions;
 using PrazoPosts.Service.Users;
@@ -18,6 +19,7 @@ namespace PrazoPosts.Service.Tests
         public void ShouldGetUserById()
         {
             Mock<IUserRepository> userRepositoryMock = new Mock<IUserRepository>();
+            Mock<IAuthService> authServiceMock = new Mock<IAuthService>();
             Mock<ICryptoService> cryptoServiceMock = new Mock<ICryptoService>();
             var mapper = TestHelper.GetMapper();
             var id = "abc123";
@@ -26,7 +28,7 @@ namespace PrazoPosts.Service.Tests
             {
                 Name = expected
             });
-            var sut = new UserService(userRepositoryMock.Object, cryptoServiceMock.Object, mapper);
+            var sut = new UserService(userRepositoryMock.Object, cryptoServiceMock.Object, authServiceMock.Object, mapper);
             var result = sut.GetUser(id);
             Assert.NotNull(result);
             Assert.Equal(expected, result.Name);
@@ -36,9 +38,10 @@ namespace PrazoPosts.Service.Tests
         public void ShouldNotGetWrongUser()
         {
             Mock<IUserRepository> userRepositoryMock = new Mock<IUserRepository>();
+            Mock<IAuthService> authServiceMock = new Mock<IAuthService>();
             Mock<ICryptoService> cryptoServiceMock = new Mock<ICryptoService>();
             var mapper = TestHelper.GetMapper();
-            var sut = new UserService(userRepositoryMock.Object, cryptoServiceMock.Object, mapper);
+            var sut = new UserService(userRepositoryMock.Object, cryptoServiceMock.Object, authServiceMock.Object, mapper);
             userRepositoryMock.Setup(x => x.GetById(It.IsAny<string>())).Returns<User>(null);
             Assert.Throws<NotFoundException>(() => sut.GetUser("test"));
         }
@@ -47,9 +50,10 @@ namespace PrazoPosts.Service.Tests
         public void ShouldRegisterUser()
         {
             Mock<IUserRepository> userRepositoryMock = new Mock<IUserRepository>();
+            Mock<IAuthService> authServiceMock = new Mock<IAuthService>();
             Mock<ICryptoService> cryptoServiceMock = new Mock<ICryptoService>();
             var mapper = TestHelper.GetMapper();
-
+            authServiceMock.Setup(x => x.Authenticate(It.IsAny<AuthDTO>())).Returns(new TokenDTO());
             var userData = new UserDTO
             {
                 Name = "Test1",
@@ -58,7 +62,7 @@ namespace PrazoPosts.Service.Tests
                 PasswordConfirmation = "pwd"
             };
 
-            var sut = new UserService(userRepositoryMock.Object, cryptoServiceMock.Object, mapper);
+            var sut = new UserService(userRepositoryMock.Object, cryptoServiceMock.Object, authServiceMock.Object, mapper);
             sut.RegisterUser(userData);
         }
 

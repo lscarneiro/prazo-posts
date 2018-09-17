@@ -6,6 +6,7 @@ using FluentValidation.Results;
 using PrazoPosts.Dto;
 using PrazoPosts.Model;
 using PrazoPosts.Repository.Interfaces;
+using PrazoPosts.Service.Auth;
 using PrazoPosts.Service.Core;
 using PrazoPosts.Service.Exceptions;
 using PrazoPosts.Service.Users.Validation;
@@ -17,18 +18,21 @@ namespace PrazoPosts.Service.Users
     {
         IUserRepository _userRepository;
         ICryptoService _cryptoService;
+        IAuthService _authService;
         IMapper _mapper;
 
         public UserService(IUserRepository userRepository,
                            ICryptoService cryptoService,
+                           IAuthService authService,
                            IMapper mapper)
         {
             _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _cryptoService = cryptoService ?? throw new ArgumentNullException(nameof(cryptoService));
+            _authService = authService ?? throw new ArgumentNullException(nameof(authService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public void RegisterUser(UserDTO userData)
+        public TokenDTO RegisterUser(UserDTO userData)
         {
             var validator = new RegisterUserValidator(_userRepository);
             var validationResult = validator.Validate(userData);
@@ -41,6 +45,12 @@ namespace PrazoPosts.Service.Users
                 Password = _cryptoService.Encrypt(userData.Password)
             };
             _userRepository.Insert(user);
+            var auth = new AuthDTO
+            {
+                Email = userData.Email,
+                Password = userData.Password
+            };
+            return _authService.Authenticate(auth);
         }
 
         public UserDTO GetUser(string _id)

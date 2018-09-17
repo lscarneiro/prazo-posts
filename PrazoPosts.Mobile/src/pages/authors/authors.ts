@@ -48,7 +48,7 @@ export class AuthorsPage {
   private executeDelete(author: Author) {
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.authorService.delete(author.id).subscribe(() => {
+    this.authorService.delete(author.Id).subscribe(() => {
       this.loadData(loading);
     }, () => {
       loading.dismiss();

@@ -1,5 +1,5 @@
 export interface Author {
-  id: string;
-  name: string;
-  postCount: number;
+  Id: string;
+  Name: string;
+  PostCount: number;
 }

@@ -16,8 +16,8 @@
   <ion-list>
     <ion-item-sliding *ngFor="let author of authors">
       <ion-item>
-        <h2>{{author.name}}</h2>
-        <p>{{author.postCount}} Postagens</p>
+        <h2>{{author.Name}}</h2>
+        <p>{{author.PostCount}} Postagens</p>
       </ion-item>
       <ion-item-options side="right">
         <button ion-button color="primary" (click)="editAuthor(author)">

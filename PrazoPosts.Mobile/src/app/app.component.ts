@@ -36,7 +36,7 @@ export class MyApp {
     this.userService.get()
       .filter(x => !!x)
       .subscribe(userData => {
-        this.userName = userData.name;
+        this.userName = userData.Name;
       });
   }
 

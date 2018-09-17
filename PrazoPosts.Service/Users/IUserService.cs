@@ -5,7 +5,7 @@ namespace PrazoPosts.Service.Users
 {
     public interface IUserService
     {
-        void RegisterUser(UserDTO userData);
+        TokenDTO RegisterUser(UserDTO userData);
         UserDTO GetUser(string _id);
     }
 }

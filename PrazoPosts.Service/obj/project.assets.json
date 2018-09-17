@@ -5694,13 +5694,13 @@
       "projectName": "PrazoPosts.Service",
       "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Service/PrazoPosts.Service.csproj",
       "packagesPath": "/Users/luizeduardo/.nuget/packages/",
-      "outputPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Service/obj",
+      "outputPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Service/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/luizeduardo/.config/NuGet/NuGet.Config"
+        "/Users/luizeduardo/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -5711,14 +5711,14 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Repository/PrazoPosts.Repository.csproj": {
-              "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Repository/PrazoPosts.Repository.csproj"
+            "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Dto/PrazoPosts.Dto.csproj": {
+              "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Dto/PrazoPosts.Dto.csproj"
             },
             "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Model/PrazoPosts.Model.csproj": {
               "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Model/PrazoPosts.Model.csproj"
             },
-            "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Dto/PrazoPosts.Dto.csproj": {
-              "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Dto/PrazoPosts.Dto.csproj"
+            "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Repository/PrazoPosts.Repository.csproj": {
+              "projectPath": "/Volumes/Data/Projects/prazo-posts/PrazoPosts.Repository/PrazoPosts.Repository.csproj"
             }
           }
         }
@@ -5732,35 +5732,35 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
-          "Microsoft.Extensions.Options": {
-            "target": "Package",
-            "version": "2.1.1"
-          },
-          "FluentValidation": {
-            "target": "Package",
-            "version": "8.0.100"
-          },
           "AutoMapper": {
             "target": "Package",
-            "version": "7.0.1"
+            "version": "[7.0.1, )"
           },
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
-            "version": "5.0.1"
+            "version": "[5.0.1, )"
           },
-          "System.Linq.Queryable": {
+          "FluentValidation": {
             "target": "Package",
-            "version": "4.3.0"
+            "version": "[8.0.100, )"
           },
-          "System.Linq": {
+          "Microsoft.Extensions.Options": {
             "target": "Package",
-            "version": "4.3.0"
+            "version": "[2.1.1, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.1.0",
+            "version": "[2.1.0, )",
             "autoReferenced": true
+          },
+          "System.Linq": {
+            "target": "Package",
+            "version": "[4.3.0, )"
+          },
+          "System.Linq.Queryable": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

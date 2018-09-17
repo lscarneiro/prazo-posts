@@ -15,15 +15,13 @@ namespace PrazoPosts.Service.Exceptions
 
         public string ToJson()
         {
-            JArray jarr = new JArray();
+            JObject jerr = new JObject();
             foreach (var failure in Failures)
             {
-                jarr.Add(new JObject(
-                    new JProperty("PropertyName", failure.PropertyName),
-                    new JProperty("ErrorMessage", failure.ErrorMessage)
-                ));
+                jerr.Add(failure.PropertyName, failure.ErrorMessage);
             }
-            return jarr.ToString();
+            JObject jobj = new JObject(new JProperty("validationErrors", jerr));
+            return jobj.ToString();
         }
     }
 }

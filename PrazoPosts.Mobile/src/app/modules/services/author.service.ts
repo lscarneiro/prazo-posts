@@ -18,7 +18,7 @@ export class AuthorService {
     return this.httpService.post<Author>(`authors`, data);
   }
   update(data: Author): Observable<Author> {
-    return this.httpService.put<Author>(`authors/${data.id}`, data);
+    return this.httpService.put<Author>(`authors/${data.Id}`, data);
   }
   delete(id: string): Observable<any> {
     return this.httpService.delete(`authors/${id}`);

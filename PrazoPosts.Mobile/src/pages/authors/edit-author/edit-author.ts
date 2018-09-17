@@ -21,7 +21,7 @@ export class EditAuthor {
               private params: NavParams,
               private authorService: AuthorService) {
     this.formGroup = this.fb.group({
-      name: [null],
+      Name: [null],
     });
     this.author = this.params.get('author');
     if (this.author) {
@@ -45,7 +45,7 @@ export class EditAuthor {
     let loading = this.loadingCtrl.create();
     loading.present();
     let author = <Author>Object.assign(this.author || {}, this.formGroup.value);
-    if (author.id) {
+    if (author.Id) {
       this.authorService.update(author).subscribe(() => {
         loading.dismiss();
         this.dismiss();

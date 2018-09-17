@@ -49,7 +49,7 @@ export class HomePage {
   private executeDelete(post: Post) {
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.postService.delete(post.id).subscribe(() => {
+    this.postService.delete(post.Id).subscribe(() => {
       this.loadData(loading);
     }, () => {
       loading.dismiss();

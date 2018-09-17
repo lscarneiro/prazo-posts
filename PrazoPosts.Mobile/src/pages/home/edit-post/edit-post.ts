@@ -24,9 +24,9 @@ export class EditPost {
               private authorService: AuthorService,
               private postService: PostService) {
     this.formGroup = this.fb.group({
-      title: [null],
-      authorId: [null],
-      content: [null],
+      Title: [null],
+      AuthorId: [null],
+      Content: [null],
     });
     this.post = this.params.get('post');
     if (this.post) {
@@ -58,7 +58,7 @@ export class EditPost {
     let post = <Post>Object.assign(this.post || {}, this.formGroup.value);
     let loading = this.loadingCtrl.create();
     loading.present();
-    if (post.id) {
+    if (post.Id) {
       this.postService.update(post).subscribe(() => {
         loading.dismiss();
         this.dismiss();

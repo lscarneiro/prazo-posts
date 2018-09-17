@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../core/http.service";
 import {ConfigService} from "../core/config.service";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {User} from "../../dto/user";
+import {TokenData} from "../../dto/token-data";
 
 @Injectable()
 export class UserService {
@@ -31,6 +32,10 @@ export class UserService {
       this.fetching = true;
     }
     return this.tempSubject
+  }
+
+  register(data: User): Observable<TokenData> {
+    return this.httpService.post<TokenData>(`users`, data);
   }
 
   clearCache(): void {

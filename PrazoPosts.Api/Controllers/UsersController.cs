@@ -8,6 +8,7 @@ using PrazoPosts.Service.Users;
 namespace PrazoPosts.Api.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     [ApiController]
     public class UsersController : PrazoController
     {
@@ -18,7 +19,6 @@ namespace PrazoPosts.Api.Controllers
         }
 
         // GET users
-        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,12 +26,11 @@ namespace PrazoPosts.Api.Controllers
         }
 
         // POST users
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Post([FromBody] UserDTO user)
         {
-
-            _userService.RegisterUser(user);
-            return Ok();
+            return Ok(_userService.RegisterUser(user));
         }
     }
 }

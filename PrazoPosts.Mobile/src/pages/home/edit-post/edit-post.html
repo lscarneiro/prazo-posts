@@ -3,7 +3,7 @@
     <ion-buttons start>
       <button ion-button (click)="dismiss()">Cancelar</button>
     </ion-buttons>
-    <ion-title>{{title}} post</ion-title>
+    <ion-title>{{Title}} post</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -12,37 +12,28 @@
   <form novalidate [formGroup]="formGroup">
     <ion-list>
       <ion-item>
-        <ion-label stacked
-                   [class.with-error]="formGroup.get('title').hasError('required') && formGroup.get('title').touched">
-          Título
-        </ion-label>
-        <ion-input formControlName="title" required></ion-input>
+        <ion-label stacked>Título</ion-label>
+        <ion-input formControlName="Title" required></ion-input>
         <div item-content class="error-message"
-             *ngIf="formGroup.get('title').hasError('required') && formGroup.get('title').touched">
+             *ngIf="formGroup.get('Title').hasError('required') && formGroup.get('Title').touched">
           <small text-start>Título é obrigatório</small>
         </div>
       </ion-item>
       <ion-item>
-        <ion-label stacked
-                   [class.with-error]="formGroup.get('authorId').hasError('required') && formGroup.get('authorId').touched">
-          Autor
-        </ion-label>
-        <ion-select formControlName="authorId" required>
-          <ion-option value="{{author.id}}" *ngFor="let author of authors">{{author.name}}</ion-option>
+        <ion-label stacked>Autor</ion-label>
+        <ion-select formControlName="AuthorId" required>
+          <ion-option value="{{author.Id}}" *ngFor="let author of authors">{{author.Name}}</ion-option>
         </ion-select>
         <div item-content class="error-message"
-             *ngIf="formGroup.get('authorId').hasError('required') && formGroup.get('authorId').touched">
+             *ngIf="formGroup.get('AuthorId').hasError('required') && formGroup.get('AuthorId').touched">
           <small text-start>Autor é obrigatório</small>
         </div>
       </ion-item>
       <ion-item>
-        <ion-label stacked
-                   [class.with-error]="formGroup.get('content').hasError('required') && formGroup.get('content').touched">
-          Conteúdo
-        </ion-label>
-        <ion-textarea formControlName="content" required></ion-textarea>
+        <ion-label stacked>Conteúdo</ion-label>
+        <ion-textarea formControlName="Content" required></ion-textarea>
         <div item-content class="error-message"
-             *ngIf="formGroup.get('content').hasError('required') && formGroup.get('content').touched">
+             *ngIf="formGroup.get('Content').hasError('required') && formGroup.get('Content').touched">
           <small text-start>Conteúdo é obrigatório</small>
         </div>
       </ion-item>
