@@ -3,7 +3,6 @@ import {AlertController, Loading, LoadingController, ModalController, NavControl
 import {Post} from "../../app/dto/post";
 import {PostService} from "../../app/modules/services/post.service";
 import {EditPost} from "./edit-post/edit-post";
-import {Author} from "../../app/dto/author";
 
 @Component({
   selector: 'page-home',
@@ -12,6 +11,7 @@ import {Author} from "../../app/dto/author";
 export class HomePage {
 
   posts: Post[] = [];
+
   constructor(public navCtrl: NavController,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController,
@@ -20,6 +20,7 @@ export class HomePage {
     this.loadData();
 
   }
+
   ionViewDidLoad() {
 
   }
