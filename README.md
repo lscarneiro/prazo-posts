@@ -39,6 +39,8 @@ To do that just run on your terminal:
 
 `npm i -g ionic cordova`
 
+`npm install`
+
 After that you're ready to Rock'n'Roll baby!
 
 To change the settings like `API_URL` and things like that, modify the file `PrazoPosts.Mobile/src/app/modules/core/config.service.ts`
