@@ -16,6 +16,8 @@ This project was developed as a coding exercise for .NET Core, MongoDB, Unit Tes
 *  Typescript
 *  Angular 5
 
+
+
 ## Running the API
 
 **To run the WebAPI you first need a working MongoDB server that you should configure on the `appsettings.Development.json` (for debug) or `appsettings.json` (for release)**
@@ -49,3 +51,20 @@ Steps to navigate through the app:
 2. Create an Author
 3. Create your first Post
 4. Enjoy
+
+## Some images
+**Login page**
+
+![Login page](https://github.com/lscarneiro/prazo-posts/blob/master/readme-img/ogin-page.png)
+
+**Home page**
+
+![Home page](https://github.com/lscarneiro/prazo-posts/blob/master/readme-img/home-page.png)
+
+**Authors page**
+
+![Authors page](https://github.com/lscarneiro/prazo-posts/blob/master/readme-img/author-page.png)
+
+**Registration page**
+
+![Registrtion page](https://github.com/lscarneiro/prazo-posts/blob/master/readme-img/user-registration.png)
